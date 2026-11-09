@@ -1,6 +1,13 @@
 node_modules
 /.vscode
 
+# Ignore actual database files and uploaded user files
+pb_data/
+
+# DO NOT ignore pb_migrations or pb_hooks (if you use them)
+!pb_migrations/
+!pb_hooks/
+
 # Output
 .output
 .vercel

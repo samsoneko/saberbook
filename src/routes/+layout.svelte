@@ -1,12 +1,37 @@
 <script lang="ts">
-	import favicon from '#lib/assets/favicon.svg';
-	import type { LayoutProps } from './$types';
-
-	let { children }: LayoutProps = $props();
+	import favicon from '#lib/assets/favicon.png';
+	import { page } from '$app/state';
+	let { data, children } = $props();
 </script>
 
 <svelte:head>
+    <title>Saberroom</title>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children()}
+<div class="app-frame">
+	<nav class="navbar">
+        <button class={['navbar-button', page.url.pathname === '/' ? 'active' : '']} aria-label="Home">
+            <a class="navbar-icon" href="/" aria-label="Home"><i class="fas fa-home"></i> Home</a>
+        </button>
+        {#if data.user}
+            <!-- User is logged in -->
+            <button class={['navbar-button', page.url.pathname === '/profile' ? 'active' : '']} aria-label="Profile">
+                <a class="navbar-icon" href="/profile" aria-label="Profile"><i class="fas fa-user"></i> Profile</a>
+            </button>
+        {:else}
+            <!-- User is logged out -->
+            <button class='navbar-button' aria-label="Log In">
+                <a class="navbar-icon" href="/login"><i class="fas fa-right-to-bracket"></i> Log In</a>
+            </button>
+        {/if}
+    </nav>
+
+    <div class="app-content">
+        {@render children()}
+    </div>
+</div>
+
+<style>
+	@import '#lib/assets/style.css';
+</style>
