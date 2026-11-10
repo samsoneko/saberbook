@@ -14,7 +14,7 @@
 
     <h3>Account Information</h3>
     <section class="centered-section">
-        <img class="account-avatar" src={pb.files.getUrl(data.user, data.user.avatar)} alt="profile_picture"/>
+        <img class="account-avatar" src={pb.files.getURL(data.user, data.user.avatar)} alt="profile_picture"/>
         <div class="account-info-tile">
             <p class="account-info-type">Full Name:</p>
             <p class="account-info-value">{data.user.name}</p>
